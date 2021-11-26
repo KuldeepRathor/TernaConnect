@@ -108,7 +108,7 @@ class _MyRegisterState extends State<MyRegister> {
                     ),
                     RoundedButton(
                         title: 'Register',
-                        colour: Colors.black54,
+                        colour: Colors.blueAccent,
                         onPressed: () {
                           Navigator.push(
                             context,
