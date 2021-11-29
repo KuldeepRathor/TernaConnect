@@ -1,46 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-class NoticeBoard extends StatefulWidget {
-  const NoticeBoard({Key? key}) : super(key: key);
+class Noticeboard extends StatefulWidget {
+  const Noticeboard({Key? key}) : super(key: key);
 
   @override
-  _NoticeBoardState createState() => _NoticeBoardState();
+  _NoticeboardState createState() => _NoticeboardState();
 }
 
-class _NoticeBoardState extends State<NoticeBoard> {
+class _NoticeboardState extends State<Noticeboard> {
+  final List<int> noticenumber = <int>[1, 2, 3,4,5,6,7];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:BottomNavigationBar(
-        //mainAxisAlignment:MainAxisAlignment.end,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home,
-                color: Colors.black,size:50),
-            label: '',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment,
-              color: Colors.black,size:50,),
-            label: '',
-            //backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school,
-              color: Colors.black,size: 50,),
-            label: '',
-            //backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle,
-              color: Colors.black,size: 50,),
-            label: '',
-            //backgroundColor: Colors.pink,
-          ),
-        ],
-      ),
+      backgroundColor:Colors.lightBlue,
       appBar: AppBar(
         iconTheme:const IconThemeData(
           color: CupertinoColors.black,
@@ -55,66 +28,64 @@ class _NoticeBoardState extends State<NoticeBoard> {
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
+          child:SingleChildScrollView(
+
+            child: Center(
+
+              child: Column(
+
+                children:<Widget> [
+                  Text(
+                    'NOTICES',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize:25.0
+
+                    ),
+                  ),
 
 
-        child:Column(
-          children:<Widget> [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 140,
+                        width: 180,
 
-            const Padding(
-              padding:  EdgeInsets.fromLTRB(0.0,20.0,150.0,0.0),
-              child: Text(
-                'Welcome!',
-                style: TextStyle(fontWeight: FontWeight.w300,
-                    fontSize:50.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+
+                        ),
+
+                        child: Center(
+                            child: Text('Notice 1')),
+
+                      ),
+                      Container(
+                        height: 140,
+                        width: 180,
+
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+
+                        ),
+
+                        child: Center(
+                            child: Text('Notice 2')),
+
+                      ),
+                    ],
+                  ),
+
+
+
+                ],
+
               ),
             ),
-            const Padding(
-              padding:  EdgeInsets.fromLTRB(1.0,0.0,200.0,50.0),
-              child:  Text(
-                'Don\'t Have A Good Day,\n Have A Great Day!',
-                style:TextStyle(fontSize:15.0,
-                    fontStyle: FontStyle.italic),
-              ),
-            ),
-            Row(
-
-              mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-
-              children: <Widget>[
-
-                Container(
-                  height:400,
-                  width: 185,
-                  //padding:const  EdgeInsets.symmetric(horizontal: 50,vertical:200),
-                  decoration:  BoxDecoration(
-                    color: Colors.white ,
-                    borderRadius:BorderRadius.circular(25),
-
-                  ),
-
-                  child: const Text( 'Time Table',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-
-                  ),
-                ),
-
-                Container(
-                  height:400,
-                  width: 185,
-                  decoration:  BoxDecoration(
-                    color: Colors.white ,
-                    borderRadius:BorderRadius.circular(25),
-                  ),
-                  child: const Text('Notices',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold), ),
-                ),
-              ],
-            ),
-          ],
-        ),
-
+          )
       ),
     );
 

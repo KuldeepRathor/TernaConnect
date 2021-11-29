@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:terna_connect/notice_board.dart';
+import 'package:terna_connect/bottomnav.dart';
 import 'package:terna_connect/register_page.dart';
 import 'rounded_button.dart';
 
@@ -108,7 +108,7 @@ class _MyLoginState extends State<MyLogin> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const NoticeBoard()),
+                                  builder: (context) =>  BottomBar()),
                             );
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
