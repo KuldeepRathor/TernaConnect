@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:terna_connect/notice_board.dart';
 import 'package:terna_connect/register_page.dart';
 import 'rounded_button.dart';
@@ -14,6 +16,7 @@ class MyLogin extends StatefulWidget {
 class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
+    String R_email='',R_pass='';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
@@ -58,6 +61,9 @@ class _MyLoginState extends State<MyLogin> {
                 child: Column(
                   children: [
                     TextFormField(
+                      onChanged: (value){
+                        R_email=value;
+                      },
                       style: const TextStyle(),
                       obscureText: false,
                       decoration: InputDecoration(
@@ -73,6 +79,9 @@ class _MyLoginState extends State<MyLogin> {
                       height: 30,
                     ),
                     TextFormField(
+                      onChanged: (value){
+                        R_pass = value;
+                      },
                       style: const TextStyle(),
                       obscureText: true,
                       decoration: InputDecoration(
@@ -90,12 +99,73 @@ class _MyLoginState extends State<MyLogin> {
                     RoundedButton(
                         title: 'Log In',
                         colour: Colors.black54,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NoticeBoard()),
-                          );
+                        onPressed: ()async {
+                          try {
+                            UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                email: R_email,
+                                password: R_pass
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const NoticeBoard()),
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-not-found') {
+                              print('No user found for that email.');
+                             /* Fluttertoast.showToast(
+                                  msg: "  No User found for given email  ",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.TOP,
+                                  timeInSecForIosWeb: 3,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.red,
+                                  fontSize: 16.0
+                              );*/
+                              showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: Text("Invalid Email",style: TextStyle(color: Colors.red),),
+                                  content: Text("Please Check Entered Email Address",style: TextStyle(fontSize:18),),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(ctx).pop();
+                                      },
+                                      child: const Text("RETRY",
+                                      style: TextStyle (
+                                       color: Colors.lightBlue
+                                      ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else if (e.code == 'wrong-password') {
+                              print('Wrong password provided for that user.');
+                              showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: Text("Invalid Password",style: TextStyle(color: Colors.red),),
+                                  content: Text("Please Check the Password you Entered",style: TextStyle(fontSize:18),),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(ctx).pop();
+                                      },
+                                      child: const Text("RETRY",
+                                        style: TextStyle (
+                                            color: Colors.lightBlue
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          }
+
+
                         }),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,7 +190,9 @@ class _MyLoginState extends State<MyLogin> {
                           //style: const ButtonStyle(),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           child: const Text(
                             'Forgot Password?',
                             style: TextStyle(

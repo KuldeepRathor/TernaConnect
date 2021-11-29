@@ -32,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 //   ),
                 // ),
                 Text(
-                  'Terna Connect',
+                  '  Terna Connect',
                   style: TextStyle(
                       fontSize: 45.0,
                       fontWeight: FontWeight.w900,

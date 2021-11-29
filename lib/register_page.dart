@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:terna_connect/home_page.dart';
@@ -18,6 +19,7 @@ class _MyRegisterState extends State<MyRegister> {
 
   @override
   Widget build(BuildContext context) {
+    String email='',pass='';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
@@ -63,7 +65,7 @@ class _MyRegisterState extends State<MyRegister> {
                   children: [
                     TextFormField(
                       style: const TextStyle(),
-                      obscureText: true,
+                      obscureText: false,
                       decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
                         filled: true,
@@ -77,6 +79,9 @@ class _MyRegisterState extends State<MyRegister> {
                       height: 30,
                     ),
                     TextFormField(
+                      onChanged: (value){
+                        email = value;
+                      },
                       style: const TextStyle(),
                       obscureText: false,
                       decoration: InputDecoration(
@@ -92,6 +97,9 @@ class _MyRegisterState extends State<MyRegister> {
                       height: 30,
                     ),
                     TextFormField(
+                      onChanged: (value){
+                        pass = value;
+                      },
                       style: const TextStyle(),
                       obscureText: true,
                       decoration: InputDecoration(
@@ -109,12 +117,47 @@ class _MyRegisterState extends State<MyRegister> {
                     RoundedButton(
                         title: 'Register',
                         colour: Colors.blueAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NoticeBoard()),
-                          );
+                        onPressed: ()async {
+                          try {
+                            UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                email: email,
+                                password: pass
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyLogin()),
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              print('The password provided is too weak.');
+                              //ToDo: create a popup message
+                            } else if (e.code == 'email-already-in-use') {
+                              print('The account already exists for that email.');
+                              showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: Text("Check Email",style: TextStyle(color: Colors.red),),
+                                  content: Text("The account already exists for that email.",style: TextStyle(fontSize:18),),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(ctx).pop();
+                                      },
+                                      child: const Text("RETRY",
+                                        style: TextStyle (
+                                            color: Colors.lightBlue
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+
                         }),
                     Row(
                       children: [

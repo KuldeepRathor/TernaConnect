@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "206231109968",
+    "project_id": "terna-connect",
+    "storage_bucket": "terna-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206231109968:android:81ff7d380b5f347035ac55",
+        "android_client_info": {
+          "package_name": "com.example.terna_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206231109968-kt03dgllu09tfepi9go60q20e9qsiavv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.terna_connect",
+            "certificate_hash": "6efd8984626dfff27d9e17686042cf41938287df"
+          }
+        },
+        {
+          "client_id": "206231109968-un2ijn8jud524u2gqfufot1r8tlcnfpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPJ37O4OgEMR2EacIHYwKesAsaQOjRReY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206231109968-un2ijn8jud524u2gqfufot1r8tlcnfpl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
