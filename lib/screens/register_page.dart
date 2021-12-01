@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:terna_connect/home_page.dart';
-import 'package:terna_connect/login_page.dart';
-import 'package:terna_connect/notice_board.dart';
-import 'rounded_button.dart';
+import 'package:terna_connect/screens/login_page.dart';
+import '../rounded_button.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -15,7 +13,7 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
-  bool showSpinner = false;
+//  bool showSpinner = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +38,29 @@ class _MyRegisterState extends State<MyRegister> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.only(left: 0, top: 150),
-                child: const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Create New Account',
-                      style: TextStyle(
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white,
-                      ),
-                    ),
+              // Container(
+              //   margin: const EdgeInsets.only(left: 0, top: 150),
+              //   child: const Center(
+              //     child: Padding(
+              //       padding: EdgeInsets.all(8.0),
+              //       child: Text(
+              //         'Create New Account',
+              //         style: TextStyle(
+              //           //fontWeight: FontWeight.bold,
+              //           fontSize: 30,
+              //           color: Colors.white,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Hero(
+                tag: 'logo',
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 300.0,
+                    child: Image.asset('images/LOGO 2.png'),
                   ),
                 ),
               ),
@@ -75,6 +83,7 @@ class _MyRegisterState extends State<MyRegister> {
                         ),
                       ),
                     ),
+
                     const SizedBox(
                       height: 30,
                     ),
@@ -118,6 +127,7 @@ class _MyRegisterState extends State<MyRegister> {
                         title: 'Register',
                         colour: Colors.blueAccent,
                         onPressed: ()async {
+
                           try {
                             UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                                 email: email,
@@ -128,6 +138,7 @@ class _MyRegisterState extends State<MyRegister> {
                               MaterialPageRoute(
                                   builder: (context) => const MyLogin()),
                             );
+
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               print('The password provided is too weak.');

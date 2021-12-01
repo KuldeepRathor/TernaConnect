@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:terna_connect/bottomnav.dart';
-import 'package:terna_connect/register_page.dart';
-import 'rounded_button.dart';
+import 'package:terna_connect/screens/register_page.dart';
+import '../rounded_button.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -14,17 +13,18 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+
   @override
   Widget build(BuildContext context) {
-    String R_email='',R_pass='';
+    String R_email = '', R_pass = '';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme:const IconThemeData(
+        iconTheme: const IconThemeData(
           color: CupertinoColors.black,
         ),
-        title: const Text(
+        title:  Text(
           'Login Page',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -37,19 +37,28 @@ class _MyLoginState extends State<MyLogin> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.only(left: 0, top: 180),
-                child: const Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 28.0),
-                    child: Text(
-                      'Please Enter your Terna credentials:',
-                      style: TextStyle(
-                        //fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white,
-                      ),
-                    ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  BottomBar()),
+                  );
+                },
+                child: const Text(
+                  'Enter as Guest',
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Hero(
+                tag: 'logo',
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 300.0,
+                    child: Image.asset('images/LOGO 2.png'),
                   ),
                 ),
               ),
@@ -61,8 +70,8 @@ class _MyLoginState extends State<MyLogin> {
                 child: Column(
                   children: [
                     TextFormField(
-                      onChanged: (value){
-                        R_email=value;
+                      onChanged: (value) {
+                        R_email = value;
                       },
                       style: const TextStyle(),
                       obscureText: false,
@@ -79,7 +88,7 @@ class _MyLoginState extends State<MyLogin> {
                       height: 30,
                     ),
                     TextFormField(
-                      onChanged: (value){
+                      onChanged: (value) {
                         R_pass = value;
                       },
                       style: const TextStyle(),
@@ -99,21 +108,23 @@ class _MyLoginState extends State<MyLogin> {
                     RoundedButton(
                         title: 'Log In',
                         colour: Colors.black54,
-                        onPressed: ()async {
+                        onPressed: () async {
+
                           try {
-                            UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: R_email,
-                                password: R_pass
-                            );
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .signInWithEmailAndPassword(
+                                    email: R_email, password: R_pass);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>  BottomBar()),
                             );
+
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               print('No user found for that email.');
-                             /* Fluttertoast.showToast(
+                              /* Fluttertoast.showToast(
                                   msg: "  No User found for given email  ",
                                   toastLength: Toast.LENGTH_LONG,
                                   gravity: ToastGravity.TOP,
@@ -125,17 +136,23 @@ class _MyLoginState extends State<MyLogin> {
                               showDialog(
                                 context: context,
                                 builder: (ctx) => AlertDialog(
-                                  title: Text("Invalid Email",style: TextStyle(color: Colors.red),),
-                                  content: Text("Please Check Entered Email Address",style: TextStyle(fontSize:18),),
+                                  title: const Text(
+                                    "Invalid Email",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  content: const Text(
+                                    "Please Check Entered Email Address",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(ctx).pop();
                                       },
-                                      child: const Text("RETRY",
-                                      style: TextStyle (
-                                       color: Colors.lightBlue
-                                      ),
+                                      child: const Text(
+                                        "RETRY",
+                                        style:
+                                            TextStyle(color: Colors.lightBlue),
                                       ),
                                     ),
                                   ],
@@ -146,17 +163,23 @@ class _MyLoginState extends State<MyLogin> {
                               showDialog(
                                 context: context,
                                 builder: (ctx) => AlertDialog(
-                                  title: Text("Invalid Password",style: TextStyle(color: Colors.red),),
-                                  content: Text("Please Check the Password you Entered",style: TextStyle(fontSize:18),),
+                                  title: const Text(
+                                    "Invalid Password",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  content: const Text(
+                                    "Please Check the Password you Entered",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(ctx).pop();
                                       },
-                                      child: const Text("RETRY",
-                                        style: TextStyle (
-                                            color: Colors.lightBlue
-                                        ),
+                                      child: const Text(
+                                        "RETRY",
+                                        style:
+                                            TextStyle(color: Colors.lightBlue),
                                       ),
                                     ),
                                   ],
@@ -164,8 +187,6 @@ class _MyLoginState extends State<MyLogin> {
                               );
                             }
                           }
-
-
                         }),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +199,6 @@ class _MyLoginState extends State<MyLogin> {
                                   builder: (context) => const MyRegister()),
                             );
                           },
-
                           child: const Text(
                             'Sign Up',
                             textAlign: TextAlign.left,
@@ -190,9 +210,7 @@ class _MyLoginState extends State<MyLogin> {
                           //style: const ButtonStyle(),
                         ),
                         TextButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                           child: const Text(
                             'Forgot Password?',
                             style: TextStyle(

@@ -1,7 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:terna_connect/login_page.dart';
-import 'package:terna_connect/notice_board.dart';
-import 'package:terna_connect/register_page.dart';
+import 'package:terna_connect/screens/login_page.dart';
+import 'package:terna_connect/screens/register_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
 
@@ -17,26 +17,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Row(
-              children: const <Widget>[
-                // Padding(
-                //   padding: const EdgeInsets.all(18.0),
-                //   child: SizedBox(
-                //     child: Image.asset(''),
-                //     height: 60.0,
-                //   ),
-                // ),
-                Text(
-                  '  Terna Connect',
-                  style: TextStyle(
-                      fontSize: 45.0,
+              children:  <Widget>[
+                Padding(
+                  padding:  EdgeInsets.all(8.0),
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      child: Image.asset('images/LOGO 2.png'),
+                      height: 100.0,
+                    ),
+                  ),
+                ),
+                TypewriterAnimatedTextKit(
+                  text: [
+                    'Terna Connect',
+                  ],
+                  textStyle: TextStyle(
+                      fontSize: 35.0,
                       fontWeight: FontWeight.w900,
-                      color: Colors.black54),
+                      color: Colors.black),
                 ),
               ],
             ),
@@ -69,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(30.0),
@@ -84,7 +89,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   minWidth: 200.0,
                   height: 42.0,
-                  child: Text(
+                  child: const Text(
                     'Register',
                   ),
                 ),

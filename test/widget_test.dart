@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:terna_connect/main.dart';
-import 'package:terna_connect/welcome_page.dart';
+import 'package:terna_connect/screens/welcome_page.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

@@ -1,10 +1,8 @@
+// @dart=2.9
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:terna_connect/home_page.dart';
-import 'package:terna_connect/login_page.dart';
-import 'package:terna_connect/notice_board.dart';
-import 'package:terna_connect/register_page.dart';
-import 'package:terna_connect/welcome_page.dart';
+import 'package:terna_connect/screens/welcome_page.dart';
 
   void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:terna_connect/home_page.dart';
-import 'package:terna_connect/profile_page.dart';
-import 'package:terna_connect/notice_board.dart';
+import 'package:terna_connect/screens/home_page.dart';
+import 'package:terna_connect/screens/profile_page.dart';
+import 'package:terna_connect/screens/notice_board.dart';
 import 'package:terna_connect/resources.dart';
+
+
 class BottomBar extends StatefulWidget {
+  const BottomBar({Key? key}) : super(key: key);
+
   @override
   _BottomBarState createState() => new _BottomBarState();
 }
