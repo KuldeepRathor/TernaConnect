@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:terna_connect/screens/login_page.dart';
-import 'package:terna_connect/screens/register_page.dart';
+import 'package:terna_connect/registration/login_page.dart';
+import 'package:terna_connect/registration/register_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
 

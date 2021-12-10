@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'register_page.dart';
+import '../registration/register_page.dart';
 
 class profilepage extends StatelessWidget {
   @override

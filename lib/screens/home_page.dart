@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:animated_card/animated_card.dart';
+
 class HomePage extends StatefulWidget {
   static const String id = 'login_screen';
 
-  const HomePage({Key? key}) : super(key: key);
 
+  const HomePage({Key? key}) : super(key: key);
   @override
   _HomepageState createState() => _HomepageState();
 }
 
 class _HomepageState extends State<HomePage> {
+  //final items = List<String>.generate(51, (i) => "Item $i");
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         iconTheme:const IconThemeData(
           color: CupertinoColors.black,
         ),
         title:
-        Text(
+        const Text(
           'Terna Connect',
           style: TextStyle(
             color: Colors.black,
             fontSize:20.0,
           ),
         ),
-
         backgroundColor: Colors.white,
       ),
       body:
@@ -52,9 +55,7 @@ class _HomepageState extends State<HomePage> {
             ),
             Expanded(
               child: Row(
-
                 mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-
                 children: <Widget>[
                   Container(
                     height:400,
@@ -63,42 +64,40 @@ class _HomepageState extends State<HomePage> {
                     decoration:  BoxDecoration(
                       color: Colors.white ,
                       borderRadius:BorderRadius.circular(25),
-
                     ),
-
                     child: const Text( 'Time Table',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: FontWeight.bold),
-
                     ),
                   ),
-
-
                   Container(
                     height:400,
                     width: 185,
                     decoration:  BoxDecoration(
                       color: Colors.white ,
                       borderRadius:BorderRadius.circular(25),
+
                     ),
-                    child: const Text('Notifications',
+                    child:  Text('Notifications',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                       ),
                     ),
+                    //   child: ListView.builder(
+                    //     itemCount: items.length,
+                    //     itemBuilder: (context, index) {
+                    //       return ListTile(
+                    //         title: Text(items[index]),
+                    //       );
+                    //     },
+                    //   )
                   ),
-
-
                 ],
               ),
             ),
           ],
         ),
-
-
-
-
       ),
 
     );

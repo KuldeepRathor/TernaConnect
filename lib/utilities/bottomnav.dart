@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:terna_connect/notice/notice_board.dart';
 import 'package:terna_connect/screens/home_page.dart';
 import 'package:terna_connect/screens/profile_page.dart';
-import 'package:terna_connect/screens/notice_board.dart';
-import 'package:terna_connect/resources.dart';
+import 'package:terna_connect/resource/resources.dart';
 
 
 class BottomBar extends StatefulWidget {

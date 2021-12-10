@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:terna_connect/bottomnav.dart';
-import 'package:terna_connect/screens/register_page.dart';
-import '../rounded_button.dart';
+import 'package:terna_connect/utilities/bottomnav.dart';
+import 'package:terna_connect/registration/register_page.dart';
+import '../utilities/rounded_button.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -39,13 +39,10 @@ class _MyLoginState extends State<MyLogin> {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  BottomBar()),
-                  );
+
                 },
                 child: const Text(
-                  'Enter as Guest',
+                  '',
                   style: TextStyle(
                       color: Colors.black54,
                       fontSize: 18,
