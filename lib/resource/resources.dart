@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Resources  extends StatefulWidget {
   const Resources ({Key? key}) : super(key: key);
@@ -47,7 +48,9 @@ class _ResourcesState extends State<Resources> {
                     onPrimary: Colors.black,
                     // foreground
                   ),
-                  onPressed: () { },
+                  onPressed: () {
+                    _launchURL('https://drive.google.com/drive/folders/1baCOfZb1SpSn2M0zP1yngHZfh7u1LBh9?usp=sharing');
+                  },
                   child: Text('Textbooks'),
                 ),
                 ElevatedButton(
@@ -55,7 +58,9 @@ class _ResourcesState extends State<Resources> {
                     primary: Colors.white, // background
                     onPrimary: Colors.black, // foreground
                   ),
-                  onPressed: () { },
+                  onPressed: () { 
+                    _launchURL('https://drive.google.com/drive/folders/1Ic9Z8-qGvN4sZrNWX1Ze59YxpHgTabJ8?usp=sharing');
+                  },
                   child: Text('Notes'),
                 ),
 
@@ -64,7 +69,9 @@ class _ResourcesState extends State<Resources> {
                     primary: Colors.white, // background
                     onPrimary: Colors.black, // foreground
                   ),
-                  onPressed: () { },
+                  onPressed: () { 
+                    _launchURL('https://drive.google.com/drive/folders/1KrhrPuZfwiYKpdiqeX0XtNhlRVg8V0TB?usp=sharing');
+                  },
                   child: Text('Previous year papers'),
                 )
 
@@ -75,4 +82,9 @@ class _ResourcesState extends State<Resources> {
         )
     );
   }
+}
+
+
+void _launchURL(_url) async {
+  if (!await launch(_url)) throw 'Could not launch $_url';
 }

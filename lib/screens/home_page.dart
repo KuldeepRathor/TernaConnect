@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:animated_card/animated_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'login_screen';
@@ -57,17 +58,22 @@ class _HomepageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    height:400,
-                    width: 185,
-                    //padding:const  EdgeInsets.symmetric(horizontal: 50,vertical:200),
-                    decoration:  BoxDecoration(
-                      color: Colors.white ,
-                      borderRadius:BorderRadius.circular(25),
-                    ),
-                    child: const Text( 'Time Table',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                  InkWell(
+                  onTap:(){
+                    _launchURL('https://drive.google.com/file/d/1bK8w1OIHmWWRQJCuTH6sHmp7dSYCVdu7/view?usp=sharing');
+                   }  ,
+                    child: Container(
+                      height:400,
+                      width: 185,
+                      //padding:const  EdgeInsets.symmetric(horizontal: 50,vertical:200),
+                      decoration:  BoxDecoration(
+                        color: Colors.white ,
+                        borderRadius:BorderRadius.circular(25),
+                      ),
+                      child:  Text( 'Time Table',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   Container(
@@ -78,7 +84,7 @@ class _HomepageState extends State<HomePage> {
                       borderRadius:BorderRadius.circular(25),
 
                     ),
-                    child:  Text('Notifications',
+                    child:  const Text('Notifications',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -102,4 +108,8 @@ class _HomepageState extends State<HomePage> {
 
     );
   }
+}
+
+void _launchURL(_url) async {
+  if (!await launch(_url)) throw 'Could not launch $_url';
 }
