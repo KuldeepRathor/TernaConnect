@@ -8,7 +8,7 @@ class Resources  extends StatefulWidget {
   _ResourcesState createState() => _ResourcesState();
 }
 class _ResourcesState extends State<Resources> {
-  final List<String> entries = <String>['Textbooks', 'Notes', 'Previous year papers'];
+  final List<String> entries = <String>['s', 'Notes', 'Previous year papers'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,26 +41,34 @@ class _ResourcesState extends State<Resources> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: entries.length,
-
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration:  BoxDecoration(
-                              color: Colors.white ,
-                              borderRadius:BorderRadius.circular(25),
-                            ),
-                            height: 100,
-                            child: Center(child: Text(' ${entries[index]}')),
-                          ),
-                        );
-                      }
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, // background
+                    onPrimary: Colors.black,
+                    // foreground
                   ),
+                  onPressed: () { },
+                  child: Text('Textbooks'),
                 ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, // background
+                    onPrimary: Colors.black, // foreground
+                  ),
+                  onPressed: () { },
+                  child: Text('Notes'),
+                ),
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, // background
+                    onPrimary: Colors.black, // foreground
+                  ),
+                  onPressed: () { },
+                  child: Text('Previous year papers'),
+                )
+
+
               ],
             ),
           ),
